@@ -76,3 +76,7 @@ Treat the output as hints, because some flags are false and the checker cannot f
 - To make `write` stricter or looser, edit "The STE rules we keep" and "The 20% we drop" in its `SKILL.md`. For `write-academic`, edit "The research voice" and "What changes from `write`".
 - To add a word swap, add a row to a table in the `word-list.md` of the skill. The checker reads these tables, so it flags the new word at once.
 - If you change `check.py`, copy it to the other skill too.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
