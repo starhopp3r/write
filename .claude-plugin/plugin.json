@@ -1,0 +1,18 @@
+{
+  "name": "write",
+  "version": "1.0.0",
+  "description": "Two writing styles for Claude: write (plain, controlled English, about 80% of ASD-STE100 plus Orwell's six rules) and write-academic (the same rules adapted for papers and reports).",
+  "author": {
+    "name": "Nikhil Raghavendra"
+  },
+  "keywords": [
+    "academic",
+    "asd-ste100",
+    "orwell",
+    "papers",
+    "plain-english",
+    "ste",
+    "style",
+    "writing"
+  ]
+}

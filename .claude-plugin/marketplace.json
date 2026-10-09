@@ -1,0 +1,14 @@
+{
+  "name": "write",
+  "description": "The write skills: plain, controlled English for everyday and academic writing.",
+  "owner": {
+    "name": "Nikhil Raghavendra"
+  },
+  "plugins": [
+    {
+      "name": "write",
+      "source": "./",
+      "description": "Two writing styles for Claude: write (plain, controlled English, about 80% of ASD-STE100 plus Orwell's six rules) and write-academic (the same rules adapted for papers and reports)."
+    }
+  ]
+}
