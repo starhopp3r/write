@@ -163,6 +163,8 @@ The "Use" column gives the usual swap. Sometimes the best swap is to cut the wor
 | tip of the iceberg | a small part |
 | touch base | talk, meet |
 | win-win | good for both |
+| bad actors | attackers, criminals (say who) |
+| fall into the wrong hands | be misused (say by whom) |
 
 ## Jargon and foreign phrases
 

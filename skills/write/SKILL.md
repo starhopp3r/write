@@ -10,8 +10,16 @@ This skill makes you write in plain, controlled English. The style takes about 8
 ## How the user starts the skill
 
 - **`/write <task>`**: Do the task, for example "an email to my landlord", and write all prose for it in this style.
-- **`/write` with text or a file**: Rewrite the text in this style. Keep every fact, number and name, and keep the main points in the same order. Keep the strength of each request and claim as well, so that a polite request stays a request and does not become an order. Give the rewrite first. After it, list only the choices that can change what the reader understands or does. Keep this list short, usually three items or fewer, and if there are none, add nothing.
+- **`/write` with text or a file**: Rewrite the text in this style, as described in "When you rewrite" below.
 - **`/write` alone**: Use this style for all prose in the rest of the conversation, including your own replies, until the user tells you to stop.
+
+### When you rewrite
+
+Keep every fact, number and name, and keep the main points in the same order. Keep the strength of each request and claim as well, so that a polite request stays a request and does not become an order.
+
+Fix the words, but keep the rhythm. Change long words, stock phrases and needless passives, and keep the author's long, linked sentences when they read clearly, because those sentences carry the flow. Split a sentence only when a reader would have to read it twice, and do not merge sentences that already read well, because the rewrite should sound like the author on a good day, not like a denser version of them. Keeping the rhythm does not mean keeping the padding, though, so still cut every stock phrase, inflated adjective and repeated idea, until each long sentence is long because of what it says. Do not add explanations, definitions or examples that the source does not have, and suggest them in the notes instead.
+
+Give the rewrite first. After it, list only the choices that can change what the reader understands or does. Keep this list short, usually three items or fewer, and if there are none, add nothing.
 
 Do not announce the style with a line such as "Here is the text in plain English". Give the text.
 
@@ -38,7 +46,7 @@ Clear sentences are only half of this style. The other half is how they join tog
 
 ### Build paragraphs, not a stack of single lines
 
-A paragraph is one step in the reader's understanding, so put together all the sentences that serve that step. Most paragraphs need three to five sentences, and two or three linked paragraphs read far better than six paragraphs of one line each. Join a one-sentence paragraph to the paragraph where it belongs. A single sentence can stand alone only when it is a greeting, a sign-off, or one point that the reader must not miss.
+A paragraph is one step in the reader's understanding, so put together all the sentences that serve that step. Give each paragraph as many sentences as its step needs, because a few linked paragraphs read far better than a stack of one-line paragraphs. Join a one-sentence paragraph to the paragraph where it belongs. A single sentence can stand alone only when it is a greeting, a sign-off, or one point that the reader must not miss.
 
 If the step between two paragraphs is not obvious, open the second one with a link to the first. Phrases such as "Because of this delay, …" or "There is a second problem." do this job. This applies to emails and messages too. A good email usually has two to four paragraphs: what the email is about, the details, and what you ask the reader to do.
 
@@ -51,7 +59,11 @@ If the step between two paragraphs is not obvious, open the second one with a li
 
 ### Vary the rhythm
 
-Mix short sentences of about 6 to 10 words with longer ones of 15 to 25 words. In paragraphs, aim for an average of about 15 to 20. A very short sentence can mark a key point, but three short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, as in "The fan… The mould… The landlord…", also sound mechanical. Start one of them with its condition, time or reason instead, as in "When the fan stopped, …".
+Rhythm is what makes prose flow, and it comes from contrast between sentences. When every sentence is about the same length, the text sounds like a list read aloud, even if each sentence links to the one before it. There is no word limit in this style, so let the thought set the length. A short sentence makes a key point stand out. A longer sentence carries a chain of linked ideas, such as a cause and its effect, or a claim and the condition under which it holds, and it can run as long as the thought needs while the reader can still follow it on the first read.
+
+Build each long sentence from clauses joined with "because", "which", "when", "although" or "so that", and keep it to one line of thought, so that the reader never has to hold two open questions at once. Then read the paragraph aloud in your head. If every sentence falls on the same beat, join the ones that carry one thought and shorten the one that makes the key point, until the rhythm changes with the content.
+
+Three short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, as in "The fan… The mould… The landlord…", also sound mechanical. Start one of them with its condition, time or reason instead, as in "When the fan stopped, …". Finally, do not end every paragraph with a summary or a moral, such as "This shows how important security is." Let a paragraph end on its last real point, and add a closing sentence only when it leads into the next paragraph.
 
 ### Keep reasoning in prose
 
@@ -79,7 +91,13 @@ Stitched paragraphs:
 With flow:
 > Thank you for your order. Your sofa is ready, and we can deliver it free of charge on Tuesday or Thursday. Please tell us which day suits you.
 
-In both pairs, the second version has the same facts and no hard words, and its sentences are still short. The difference is that each sentence shows how it connects to the one before it, and that related sentences share a paragraph.
+Flat rhythm:
+> The program reads the configuration file when it starts up. It checks every key in the file against the schema. This check finds typing mistakes early. If a key is unknown, the program prints a warning. If a key is missing, the program uses its default value. The finished configuration goes into a single object. Every other module reads its settings from that object.
+
+With rhythm:
+> When the program starts, it reads the configuration file and checks every key against the schema, so that a typing mistake shows up at once and not hours later. Unknown keys produce a warning. Missing keys get their default values, and the finished configuration goes into a single object that every other module reads its settings from.
+
+In all three pairs, the second version has the same facts and no hard words, and its sentences are easy to follow. The difference is that each sentence shows how it connects to the one before it, that related sentences share a paragraph, and that the lengths vary.
 
 ## The STE rules we keep
 
@@ -103,8 +121,8 @@ These rules make up the 80%. They come from ASD-STE100, a standard for aircraft 
 
 ### Sentences
 
-- **One main idea per sentence.** A sentence can carry its main idea together with the reason, condition, time or result that belongs to it. Split a sentence only when it holds two ideas that do not depend on each other.
-- **Stay under the length limits.** Instructions have a limit of 20 words and other text a limit of 25. These are upper limits, not targets. For the usual length, see "Vary the rhythm".
+- **One main idea per sentence.** A sentence can carry its main idea together with the reason, condition, time or result that belongs to it, even when that makes it long. Split a sentence only when it holds two ideas that do not depend on each other.
+- **Let the thought set the length.** No sentence has a word limit. Split a sentence when it holds two separate ideas or when a reader would have to read it twice, and join sentences when they carry one line of thought. See "Vary the rhythm".
 - **Do not drop grammar words to save space.** Keep "the", "a", "that" and "is". "Check valve open" is short but has two meanings, while "Check that the valve is open" has only one.
 - **Use plain connecting words.** Prefer "but" to "however", "so" to "therefore" and "also" to "moreover". Do not use "thus", "hence" or "whereby".
 - **Do not use semicolons.** Write two sentences, or join the parts with a connecting word.
@@ -119,7 +137,7 @@ These rules make up the 80%. They come from ASD-STE100, a standard for aircraft 
 ### Paragraphs
 
 - Give one topic per paragraph, and state the topic in the first sentence.
-- Use three to five sentences in most paragraphs, and no more than six. See "Build paragraphs, not a stack of single lines".
+- Give each paragraph the sentences that its topic needs, and start a new paragraph when the topic changes. See "Build paragraphs, not a stack of single lines".
 - Put the most important information first: give the answer or the result, then the reasons.
 
 ## The 20% we drop
@@ -131,14 +149,14 @@ Full STE is too strict for most writing outside aircraft manuals, so we drop the
 - **Strict verb forms.** You can use perfect tenses ("has failed"), continuous tenses ("is running"), "should", "might" and "-ing" forms when the simple form is wrong or clumsy.
 - **American spelling.** Match the spelling of the user or the source text.
 - **Fixed tone.** STE is for manuals, but a thank-you email must still say thank you, and a message to a friend can use contractions. Plain is not cold, so keep the warmth that the text needs.
-- **Hard word counts.** Treat the limits above as targets, not as laws.
+- **Word limits.** STE limits sentences to 20 words in instructions and 25 words in other text. We drop all word limits, because they make prose flat and choppy, and we let the flow of ideas and the rhythm of the paragraph set the length instead.
 
 ## When the rules conflict
 
 - **Cutting words or keeping grammar and linking words:** Keep them. Clear text is better than short text.
 - **A short word or an exact technical word:** Use the exact word, and explain it once if necessary.
 - **Active or passive:** Use the passive only when the doer is not known or does not matter, as in "The bridge was built in 1890." Keep passives to a small number of sentences.
-- **Short sentences or flow:** Flow wins, as long as each sentence stays under its length limit. Join related short sentences with a connecting word, and join related one-line paragraphs into one paragraph.
+- **Short sentences or flow:** Flow wins in prose. Join related short sentences with a connecting word, let a chain of linked ideas form one long sentence, and join related one-line paragraphs into one paragraph. In instructions and warnings, short sentences win.
 - **Any rule or natural English:** Natural English wins (rule 6).
 
 ## How to work
@@ -146,13 +164,13 @@ Full STE is too strict for most writing outside aircraft manuals, so we drop the
 1. Write the draft, or read the source text.
 2. Revise it against the checklist below.
 3. Do a flow pass. Join one-sentence paragraphs to the paragraphs where they belong. Then read each pair of sentences in turn and ask how the second follows from the first. If the reader cannot tell, add a link or change the order. Fold small facts into the sentences that they belong to, and vary the openings.
-4. For text of more than about 200 words, run the checker if you can run Python:
+4. For longer texts, run the checker if you can run Python:
 
    ```
    python3 <this skill's folder>/scripts/check.py <file>
    ```
 
-   You can also pipe text to it on stdin. It flags long sentences, runs of short sentences, sentences that start with the same word, fragmented paragraphs, long words, stock phrases, possible passives and semicolons. Some of its flags are false, and it cannot find every problem, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
+   You can also pipe text to it on stdin. It flags flat rhythm, runs of short sentences, sentences that start with the same word, fragmented paragraphs, long words, stock phrases, possible passives and semicolons. It never enforces a word limit. Some of its flags are false, and it cannot find every problem, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
 5. Read the result aloud in your head, as the reader will. If it sounds like separate facts read one after another, link them. If it sounds robotic or rude, fix that too.
 
 ## Checklist
@@ -161,10 +179,12 @@ Full STE is too strict for most writing outside aircraft manuals, so we drop the
 - Is there a long word or a foreign phrase with a short, common equivalent? Use the equivalent.
 - Is there a word that adds no meaning? Cut it, but keep grammar words and linking words.
 - Is there a passive? Make it active, unless the doer is unknown or unimportant.
-- Does each sentence give one main idea in 25 words or fewer?
-- Do most paragraphs have three to five linked sentences, or is the text a stack of one-line paragraphs?
+- Does each sentence give one main idea, and can the reader follow every long sentence on the first read?
+- Is each paragraph a set of linked sentences about one step, or is the text a stack of one-line paragraphs?
 - Does each sentence follow from the one before it? Would a connecting word make the link clearer?
+- Do the sentence lengths vary, with some long, linked sentences and some short ones, or are they all about the same length?
 - Are there three or more short sentences in a row, or three sentences that start with the same word? Join or rewrite them.
+- Does every paragraph end with a summary or a moral? Cut the ones that only repeat the point.
 - Does each instruction start with a verb and give one action?
 - Is each thing called by the same name every time?
 - Is the most important point first?

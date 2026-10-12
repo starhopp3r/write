@@ -12,8 +12,16 @@ The goal is a text that an expert can check quickly and that a reader from a nea
 ## How the user starts the skill
 
 - **`/write-academic <task>`**: Do the task, for example "an abstract from these notes" or "the limitations section of our report", and write all prose for it in this style.
-- **`/write-academic` with text or a file**: Rewrite the text in this style. Keep every claim, number, citation and term, and keep the structure unless the user asks you to change it. Keep the strength of each claim and request unless the evidence does not support it. Give the rewrite first. After it, list only the changes that can affect what a reader or reviewer concludes, for example a claim that you weakened because the evidence did not support it. Keep this list short, and if there is nothing to list, add nothing.
+- **`/write-academic` with text or a file**: Rewrite the text in this style, as described in "When you rewrite" below.
 - **`/write-academic` alone**: Use this style for all academic prose in the rest of the conversation, until the user tells you to stop.
+
+### When you rewrite
+
+Keep every claim, number, citation and term, and keep the structure unless the user asks you to change it. Keep the strength of each claim and request unless the evidence does not support it.
+
+Fix the words, but keep the rhythm. Change hype, clichés, stacked hedges and needless passives, and keep the author's long, linked sentences when they read clearly, because those sentences carry the argument. Split a sentence only when a reviewer would have to read it twice, and do not merge sentences that already read well, because the rewrite should sound like the author on a good day, not like a denser version of them. Keeping the rhythm does not mean keeping the padding, though, so still cut every inflated adjective, cliché and repeated idea, until each long sentence is long because of what it says. Do not add definitions, glosses or examples that the source does not have, and suggest them in the notes instead.
+
+Give the rewrite first. After it, list only the changes that can affect what a reader or reviewer concludes, for example a claim that you weakened because the evidence did not support it. Keep this list short, and if there is nothing to list, add nothing.
 
 Do not announce the style. Give the text.
 
@@ -86,7 +94,7 @@ A paper is an argument, so its sentences must read as one line of reasoning and 
 
 ### Build each paragraph around one step of the argument
 
-State the step in the first sentence, give the evidence in the middle, and use the last sentence to say what the evidence means or to lead into the next paragraph. Most paragraphs need four to eight sentences. A paragraph of one or two sentences is usually a fragment of its neighbour, so join it to the paragraph where it belongs.
+State the step in the first sentence, give the evidence in the middle, and use the last sentence to say what the evidence means or to lead into the next paragraph. Give the paragraph as many sentences as the step needs. A paragraph of one or two sentences is usually a fragment of its neighbour, so join it to the paragraph where it belongs.
 
 Link each paragraph to the one before it when the step is not obvious, for example "This gain is largest for long reports, …" or "A second limitation concerns the data." When you list several points, such as limitations or contributions, you can number them in prose with "First, …", "Second, …", as Brown et al. do in their section on limitations. Keep arguments in paragraphs, and use a list only for parallel items that the reader will scan, such as contributions, research questions or settings.
 
@@ -99,7 +107,11 @@ Link each paragraph to the one before it when the step is not obvious, for examp
 
 ### Vary the rhythm
 
-Aim for an average of about 18 to 26 words in paragraphs, and mix short and long sentences. Split any sentence of more than about 35 words. Three or more short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, such as "We… We… We…", sound mechanical, so start one of them with its setting or its contrast instead: "On TriviaQA, …" or "In contrast, …".
+Rhythm comes from contrast between sentences, and research prose needs a wide range. A short sentence states a finding so that it stands out. Most sentences carry a claim with its evidence or its condition. Long sentences carry an argument step by step, as in a result together with its comparison and its caveat. When every sentence is about the same length, a paper reads like a list of results, even if each sentence is clear on its own.
+
+There is no word limit in this style, so let the argument set the length. Build each long sentence from clauses joined with "because", "which", "whereas", "although", "so that" or "compared with", and keep it to one line of reasoning. Split a sentence only when it holds two separate ideas or when a reviewer would have to read it twice.
+
+Three or more short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, such as "We… We… We…", sound mechanical, so start one of them with its setting or its contrast instead: "On TriviaQA, …" or "In contrast, …". Finally, do not end every paragraph with a summary of what it has just shown. End on the last real point, or on a sentence that leads into the next paragraph.
 
 ### Example of flow
 
@@ -126,7 +138,7 @@ The second version has the same numbers, but it states the finding first and the
 
 ## Section by section
 
-- **Abstract** (one paragraph, usually 150 to 250 words): the context, the gap or problem, what you did, the main results with numbers, a key limitation if there is one, and why it matters. The model paper follows this order: earlier work, the problem, "Here we show that…", "Specifically, we train…", the results, "At the same time, we also identify…" and the broader impact. Most venues do not allow citations in the abstract, so name earlier work in words and put any placeholders after the abstract. Spell out each abbreviation in full.
+- **Abstract** (one paragraph, of the length that the venue asks for): the context, the gap or problem, what you did, the main results with numbers, a key limitation if there is one, and why it matters. The model paper follows this order: earlier work, the problem, "Here we show that…", "Specifically, we train…", the results, "At the same time, we also identify…" and the broader impact. Most venues do not allow citations in the abstract, so name earlier work in words and put any placeholders after the abstract. Spell out each abbreviation in full.
 - **Introduction:** the problem and why it matters, what earlier work did and did not solve, what you did, your contributions (a short list is fine), and the map of the paper.
 - **Related work:** group earlier work by idea, not by paper, and say how your work differs from each group.
 - **Method:** give enough detail for a reader to repeat the work, in the order in which you did it. Name every dataset, setting and choice, and give the reason for any choice that is not obvious.
@@ -140,8 +152,7 @@ The second version has the same numbers, but it states the finding first and the
 
 | | `write` | `write-academic` |
 |---|---|---|
-| Sentence length | Limit 25, average 15 to 20 | Limit about 35, average 18 to 26 |
-| Paragraph length | Usually 3 to 5 sentences, at most 6 | Usually 4 to 8 sentences |
+| Sentence and paragraph length | No limits. The thought sets the length, with a varied rhythm | No limits. The argument sets the length, with a wider range than everyday prose |
 | Technical terms | Avoid unless necessary | Use the exact term, define it once |
 | "However", "therefore", "thus" | Prefer "but" and "so" | Acceptable |
 | "e.g.", "i.e." | Avoid | Only inside brackets |
@@ -155,13 +166,13 @@ The second version has the same numbers, but it states the finding first and the
 1. Write the draft, or read the source text. Note every claim, number and citation that must survive.
 2. Revise it against the checklist below.
 3. Do a flow pass. Join paragraphs of one or two sentences to the paragraphs where they belong, and check that each paragraph states its step first. Then read each pair of sentences in turn and ask how the second follows from the first. If a reviewer could not tell, add a link or change the order.
-4. For text of more than about 200 words, run the checker if you can run Python:
+4. For longer texts, run the checker if you can run Python:
 
    ```
    python3 <this skill's folder>/scripts/check.py --profile academic <file>
    ```
 
-   It reads Markdown and LaTeX and skips maths, citations and code. It flags long sentences, runs of short sentences, sentences that start with the same word, fragmented and long paragraphs, extra semicolons, possible passives, and the words and phrases in the word list. Some of its flags are false, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
+   It reads Markdown and LaTeX and skips maths, citations and code. It flags flat rhythm, runs of short sentences, sentences that start with the same word, fragmented paragraphs, extra semicolons, possible passives, and the words and phrases in the word list. Some of its flags are false, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
 5. Read the result as a reviewer will. Check that each claim has its evidence and that each number and citation from the source is still there.
 
 ## Checklist
@@ -174,8 +185,9 @@ The second version has the same numbers, but it states the finding first and the
 - Is each term defined once and then used in the same way?
 - Is the work of the authors in the active voice, with "we"?
 - Is there a figure of speech, a hype word or a long word with a short equivalent? Replace it.
-- Does each paragraph take one step of the argument, in four to eight linked sentences?
+- Does each paragraph take one step of the argument, in linked sentences?
 - Does each sentence follow from the one before it?
+- Do the sentence lengths vary, with long sentences that carry an argument and short ones that state a finding, or are they all about the same length?
 - Are the limitations specific and stated openly?
 
 ## Examples

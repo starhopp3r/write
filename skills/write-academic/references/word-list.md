@@ -78,6 +78,8 @@ Technical terms are not on this list. If a word has an exact meaning in the fiel
 | sheds light on | shows, explains |
 | tapestry | (say what the parts are) |
 | unlock the potential | allow, make possible |
+| bad actors | attackers, criminals (say who) |
+| fall into the wrong hands | be misused (say by whom) |
 
 ## Hype and filler
 

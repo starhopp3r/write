@@ -5,11 +5,13 @@ Usage:
     python3 check.py [--profile plain|academic] [FILE ...]
     cat draft.md | python3 check.py --profile academic
 
-The script flags long sentences, runs of short sentences, sentences that
-start with the same word, fragmented and long paragraphs, semicolons,
+The script flags flat rhythm (sentences that are all about the same
+length), runs of short sentences, sentences that start with the same
+word, fragmented paragraphs, semicolons,
 possible passives and the words and phrases in the word list
-of the skill that holds this script (references/word-list.md). The
-"academic" profile allows longer sentences and paragraphs and reads LaTeX.
+of the skill that holds this script (references/word-list.md). It never
+enforces a word limit. The "academic" profile expects a wider range of
+sentence lengths and allows the odd semicolon.
 The script skips code, maths, citations, URLs and headings.
 
 It gives hints only. Some flags are false, and it cannot find figures of
@@ -18,32 +20,29 @@ speech that are not in the list, noun clusters or changes of term.
 
 import argparse
 import re
+import statistics
 import sys
 from pathlib import Path
 
 PROFILES = {
+    # These numbers only detect choppy or flat rhythm. None of them is a limit
+    # on how long a sentence or paragraph may be.
     "plain": {
-        "sentence_limit": 25,     # words, descriptive text
-        "step_limit": 20,         # words, items in a numbered list
-        "paragraph_limit": 6,     # sentences
         "short_sentence": 10,     # words or fewer counts as a short sentence
         "choppy_run": 3,          # this many short sentences in a row sounds choppy
-        "average_min": 12,        # words, average for sentences in paragraphs
-        "average_max": None,
-        "aim": "15 to 20",
+        "long_sentence": 25,      # words or more counts as a long sentence
+        "long_share_min": 0.10,   # rhythm is flat if fewer sentences than this are long
+        "spread_min": 7.0,        # rhythm is flat if sentence lengths vary less than this
         "semicolons_per_paragraph": 0,
         "paragraph_mean_min": 2.5,  # sentences, average for paragraphs
         "repeat_run": 3,          # this many sentences in a row with the same first word
     },
     "academic": {
-        "sentence_limit": 35,
-        "step_limit": 25,
-        "paragraph_limit": 8,
         "short_sentence": 10,
         "choppy_run": 3,
-        "average_min": 15,
-        "average_max": 27,
-        "aim": "18 to 26",
+        "long_sentence": 28,
+        "long_share_min": 0.10,
+        "spread_min": 7.5,
         "semicolons_per_paragraph": 1,
         "paragraph_mean_min": 3.0,
         "repeat_run": 3,
@@ -252,12 +251,9 @@ def check(text, word_list, profile=PROFILES["plain"]):
     text = strip_front_matter(text)
     findings = []
     stats = {"sentences": 0, "words": 0, "longest": 0, "passives": 0,
-             "prose_sentences": 0, "prose_words": 0, "paragraphs": []}
+             "prose_sentences": 0, "prose_words": 0, "paragraphs": [], "lengths": []}
     for line, block, kind in blocks(text.splitlines()):
         sentences = split_sentences(block)
-        if kind != "step" and len(sentences) > profile["paragraph_limit"]:
-            findings.append((line, "long paragraph",
-                             f"{len(sentences)} sentences, limit {profile['paragraph_limit']}"))
         if kind != "step":
             for run in choppy_runs(sentences, profile):
                 findings.append((line, "choppy",
@@ -282,10 +278,7 @@ def check(text, word_list, profile=PROFILES["plain"]):
             if kind == "paragraph":
                 stats["prose_sentences"] += 1
                 stats["prose_words"] += words
-            limit = profile["step_limit"] if kind == "step" else profile["sentence_limit"]
-            if words > limit:
-                findings.append((line, "long sentence",
-                                 f"{words} words, limit {limit}: {preview(sentence)}"))
+                stats["lengths"].append(words)
             for match in PASSIVE.finditer(sentence):
                 word = match.group(2).lower()
                 if word in NOT_PARTICIPLES:
@@ -296,16 +289,14 @@ def check(text, word_list, profile=PROFILES["plain"]):
             for pattern, phrase, swap, label in word_list:
                 for match in pattern.finditer(sentence):
                     findings.append((line, label, f'"{match.group(0)}" -> {swap}'))
-    if stats["prose_sentences"] >= 5:
-        average = stats["prose_words"] / stats["prose_sentences"]
-        if average < profile["average_min"]:
-            findings.append((None, "short sentences overall",
-                             f"paragraph sentences average {average:.1f} words, "
-                             f"aim for {profile['aim']} and link them"))
-        elif profile["average_max"] and average > profile["average_max"]:
-            findings.append((None, "dense overall",
-                             f"paragraph sentences average {average:.1f} words, "
-                             f"aim for {profile['aim']} and split the longest ones"))
+    lengths = stats["lengths"]
+    if len(lengths) >= 10:
+        spread = statistics.pstdev(lengths)
+        long_share = sum(n >= profile["long_sentence"] for n in lengths) / len(lengths)
+        if spread < profile["spread_min"] or long_share < profile["long_share_min"]:
+            findings.append((None, "flat rhythm",
+                             "most sentences are about the same length; let the thought set the length, "
+                             "so join linked ideas into longer sentences and keep a short one for a key point"))
     counts = stats["paragraphs"]
     if len(counts) >= 3 and counts[-1] == 1:
         counts = counts[:-1]  # a one-line closing, such as a thank-you, is fine
@@ -335,8 +326,10 @@ def report(name, text, word_list, profile):
         prose = stats["prose_words"] / max(stats["prose_sentences"], 1)
         counts = stats["paragraphs"]
         per_paragraph = sum(counts) / len(counts) if counts else 0
+        lengths = stats["lengths"]
+        spread = statistics.pstdev(lengths) if len(lengths) > 1 else 0
         print(f"-- {stats['sentences']} sentences, average {average:.1f} words "
-              f"({prose:.1f} in paragraphs), {per_paragraph:.1f} sentences per paragraph, "
+              f"({prose:.1f} in paragraphs, spread {spread:.1f}), {per_paragraph:.1f} sentences per paragraph, "
               f"longest {stats['longest']}, possible passives {stats['passives']}, "
               f"{len(findings)} flags")
     else:
