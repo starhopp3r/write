@@ -5,7 +5,7 @@ This repo holds two skills that make Claude and Claude Code write in plain, cont
 - **`write`** is for everyday text, such as emails, docs, instructions and commit messages.
 - **`write-academic`** is for papers, theses, reports, proposals and other academic work.
 
-Both skills follow **George Orwell's six rules** from "Politics and the English Language" (1946). They also ask for flow, which means that each sentence links to the one before it, so the text reads as one line of thought.
+Both skills follow **George Orwell's six rules** from "Politics and the English Language" (1946). They also ask for flow: each sentence links to the one before it, and related sentences share a paragraph. As a result, the text reads as one line of thought.
 
 `write` also keeps about 80% of **ASD-STE100 (Simplified Technical English)**, a standard for aircraft maintenance manuals. From that standard, it takes the short sentences, active verbs, one word for one meaning and numbered steps. It drops the strict 900-word dictionary and the other limits that make text stiff outside manuals.
 
@@ -61,7 +61,7 @@ You can also install the repo as a plugin from a marketplace. Plugin commands st
 | `skills/*/references/word-list.md` | Long words, stock phrases, jargon and hype, each with a plain swap. Each skill has its own list. |
 | `skills/*/scripts/check.py` | A checker for drafts. Both skills carry the same copy, so that each one works on its own, and `package.sh` stops if the copies differ. |
 
-The checker flags long sentences, runs of short sentences, words from the word list, possible passives and semicolons. Its academic profile allows longer sentences, reads LaTeX, and skips maths and citations:
+The checker looks for problems with both flow and words. For flow, it flags long sentences, runs of short sentences, sentences that start with the same word and fragmented paragraphs. For words, it flags the entries in the word list, possible passives and semicolons. Its academic profile allows longer sentences, reads LaTeX, and skips maths and citations:
 
 ```sh
 python3 skills/write/scripts/check.py draft.md

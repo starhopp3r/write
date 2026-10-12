@@ -5,12 +5,12 @@ description: Write or rewrite prose in plain, controlled English that goes about
 
 # Write
 
-This skill makes you write in plain, controlled English. The style takes about 80% of ASD-STE100 and adds Orwell's six rules. Its aim is text that a reader understands on the first read, even if English is not their first language. Plain does not mean choppy, though. Each sentence must also lead into the next, so that the text reads as one line of thought.
+This skill makes you write in plain, controlled English. The style takes about 80% of ASD-STE100 and adds Orwell's six rules. Its aim is text that a reader understands on the first read, even if English is not their first language. Plain does not mean choppy, though. The sentences must join into paragraphs that read as one line of thought, and this matters as much as the choice of words.
 
 ## How the user starts the skill
 
 - **`/write <task>`**: Do the task, for example "an email to my landlord", and write all prose for it in this style.
-- **`/write` with text or a file**: Rewrite the text in this style. Keep every fact, number and name, and keep the main points in the same order. Give the rewrite first. After it, list only the choices that can change what the reader understands or does. Keep this list short, usually three items or fewer, and if there are none, add nothing.
+- **`/write` with text or a file**: Rewrite the text in this style. Keep every fact, number and name, and keep the main points in the same order. Keep the strength of each request and claim as well, so that a polite request stays a request and does not become an order. Give the rewrite first. After it, list only the choices that can change what the reader understands or does. Keep this list short, usually three items or fewer, and if there are none, add nothing.
 - **`/write` alone**: Use this style for all prose in the rest of the conversation, including your own replies, until the user tells you to stop.
 
 Do not announce the style with a line such as "Here is the text in plain English". Give the text.
@@ -31,6 +31,55 @@ Apply these to all text, all the time.
 4. **"Never use the passive where you can use the active."** Name the doer, so that "The file was deleted by the script" becomes "The script deleted the file". Do not invent a doer, though. If the source does not name one, keep the passive or write the sentence so that it needs no doer.
 5. **"Never use a foreign phrase, a scientific word, or a jargon word if you can think of an everyday English equivalent."** Write "for example", not "e.g.", and "use", not "leverage". Keep a technical term if no everyday word has the same meaning, for example "kernel", "API" or "invoice". If the reader may not know the term, explain it the first time you use it.
 6. **"Break any of these rules sooner than say anything outright barbarous."** This rule has the last word. If a rule makes a sentence stiff, rude, unclear or ungrammatical, break the rule.
+
+## Make the text flow
+
+Clear sentences are only half of this style. The other half is how they join together. Each sentence should grow out of the one before it, and each paragraph should carry one line of thought from start to end. When every sentence or paragraph stands alone, the text reads like a list of facts, and the reader must find the logic without help. STE asks for these links too, because it tells writers to use connecting words and key words to keep the text logical. So give flow the same care that you give to the choice of words.
+
+### Build paragraphs, not a stack of single lines
+
+A paragraph is one step in the reader's understanding, so put together all the sentences that serve that step. Most paragraphs need three to five sentences, and two or three linked paragraphs read far better than six paragraphs of one line each. Join a one-sentence paragraph to the paragraph where it belongs. A single sentence can stand alone only when it is a greeting, a sign-off, or one point that the reader must not miss.
+
+If the step between two paragraphs is not obvious, open the second one with a link to the first. Phrases such as "Because of this delay, …" or "There is a second problem." do this job. This applies to emails and messages too. A good email usually has two to four paragraphs: what the email is about, the details, and what you ask the reader to do.
+
+### Link each sentence to the one before it
+
+- **Start with what the reader already knows, and end with what is new.** The new part at the end of one sentence then becomes the known part at the start of the next.
+- **Show the logic with a connecting word** when the link is cause, contrast, time, addition or example. Useful words are "because", "so", "but", "still", "then", "after that", "also", "instead", "for example", "as a result" and "this means that". Do not put one in every sentence, because when the order already makes the link clear, the word adds nothing.
+- **Point back with "this" or "that" and a noun**, for example "this delay" or "that change". Do not use "this" alone, because the reader may not know what it refers to. Use "it" or "they" when only one earlier noun can match.
+- **Fold small facts into the sentence that they belong to.** A time, a place, a reason or a name does not need its own sentence. Attach it with "which", "who", "when" or "because", as in "The cause was a bug in the payment code, which Sam fixed on Tuesday." One main idea per sentence does not mean one fact per sentence.
+
+### Vary the rhythm
+
+Mix short sentences of about 6 to 10 words with longer ones of 15 to 25 words. In paragraphs, aim for an average of about 15 to 20. A very short sentence can mark a key point, but three short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, as in "The fan… The mould… The landlord…", also sound mechanical. Start one of them with its condition, time or reason instead, as in "When the fan stopped, …".
+
+### Keep reasoning in prose
+
+Lists are for steps and for three or more parallel items that the reader will scan. A request, an argument, an explanation or a story reads better as paragraphs, because a list removes the links between the ideas. For the same reason, do not break an email or a message into headed sections. In docs and wiki pages, headings and lists of parallel items help readers scan, but keep the text under each heading in linked paragraphs.
+
+### Examples of flow
+
+Choppy sentences:
+> The release is late. The tests failed on Monday. The cause was a bug in the payment code. Sam fixed the bug on Tuesday. The tests pass now. We will release on Thursday.
+
+With flow:
+> The release is two days late because the tests failed on Monday. The cause was a bug in the payment code, which Sam fixed on Tuesday. Now that the tests pass, we will release on Thursday.
+
+Stitched paragraphs:
+> Thank you for your order.
+>
+> Your sofa is ready.
+>
+> We can deliver it on Tuesday or Thursday.
+>
+> Delivery is free.
+>
+> Please tell us which day suits you.
+
+With flow:
+> Thank you for your order. Your sofa is ready, and we can deliver it free of charge on Tuesday or Thursday. Please tell us which day suits you.
+
+In both pairs, the second version has the same facts and no hard words, and its sentences are still short. The difference is that each sentence shows how it connects to the one before it, and that related sentences share a paragraph.
 
 ## The STE rules we keep
 
@@ -55,7 +104,7 @@ These rules make up the 80%. They come from ASD-STE100, a standard for aircraft 
 ### Sentences
 
 - **One main idea per sentence.** A sentence can carry its main idea together with the reason, condition, time or result that belongs to it. Split a sentence only when it holds two ideas that do not depend on each other.
-- **Stay under the length limits.** Instructions have a limit of 20 words and other text a limit of 25. These are upper limits, not targets. For the usual length, see "Make the sentences flow".
+- **Stay under the length limits.** Instructions have a limit of 20 words and other text a limit of 25. These are upper limits, not targets. For the usual length, see "Vary the rhythm".
 - **Do not drop grammar words to save space.** Keep "the", "a", "that" and "is". "Check valve open" is short but has two meanings, while "Check that the valve is open" has only one.
 - **Use plain connecting words.** Prefer "but" to "however", "so" to "therefore" and "also" to "moreover". Do not use "thus", "hence" or "whereby".
 - **Do not use semicolons.** Write two sentences, or join the parts with a connecting word.
@@ -70,30 +119,8 @@ These rules make up the 80%. They come from ASD-STE100, a standard for aircraft 
 ### Paragraphs
 
 - Give one topic per paragraph, and state the topic in the first sentence.
-- Use no more than six sentences in a paragraph.
+- Use three to five sentences in most paragraphs, and no more than six. See "Build paragraphs, not a stack of single lines".
 - Put the most important information first: give the answer or the result, then the reasons.
-
-## Make the sentences flow
-
-Short, plain sentences are only half of this style. The other half is the links between them. When every sentence stands alone, the text reads like a list of facts, and the reader must find the logic without help. STE asks for these links too, because it tells writers to use connecting words and key words to keep the text logical.
-
-- **Start with what the reader already knows, and end with what is new.** The new part at the end of one sentence then becomes the known part at the start of the next.
-- **Show the logic with a connecting word** when the link is cause, contrast, time, addition or example. Useful words are "because", "so", "but", "still", "then", "after that", "also", "instead", "for example", "as a result" and "this means that". Do not put one in every sentence. If the order already makes the link clear, leave it out.
-- **Point back with "this" or "that" and a noun**, for example "this delay" or "that change". Do not use "this" alone, because the reader may not know what it refers to. Use "it" or "they" when only one earlier noun can match.
-- **Keep the reason, condition or time in the same sentence as the main idea.** "Send the list by 31 October, so that the platform team has time to move your dashboards" is one idea and needs one sentence.
-- **Vary the length.** Mix short sentences of about 5 to 10 words with longer ones of about 15 to 22. In paragraphs, aim for an average of about 13 to 18 words. Save a very short sentence for a point that the reader must notice. Three or more short sentences in a row usually sound choppy, so join two of them.
-- **Vary the openings.** Do not start three sentences in a row with the same word or the same pattern, such as "The fan... The mould... The landlord...".
-- **Keep reasoning in paragraphs.** Lists are for steps and for three or more parallel items. A request, an argument or a story reads better as sentences, because a list removes the links between the ideas.
-
-**Example of flow**
-
-Choppy:
-> The release is late. The tests failed on Monday. The cause was a bug in the payment code. Sam fixed the bug on Tuesday. The tests pass now. We will release on Thursday.
-
-With flow:
-> The release is two days late because the tests failed on Monday. The cause was a bug in the payment code, which Sam fixed on Tuesday. Now that the tests pass, we will release on Thursday.
-
-The second version has the same facts and no hard words, and every sentence is still short. The difference is that each sentence tells the reader how it connects to the one before it.
 
 ## The 20% we drop
 
@@ -111,21 +138,22 @@ Full STE is too strict for most writing outside aircraft manuals, so we drop the
 - **Cutting words or keeping grammar and linking words:** Keep them. Clear text is better than short text.
 - **A short word or an exact technical word:** Use the exact word, and explain it once if necessary.
 - **Active or passive:** Use the passive only when the doer is not known or does not matter, as in "The bridge was built in 1890." Keep passives to a small number of sentences.
-- **Short sentences or flow:** Flow wins, as long as each sentence stays under its length limit. Join related short sentences with a connecting word instead of leaving them in a row.
+- **Short sentences or flow:** Flow wins, as long as each sentence stays under its length limit. Join related short sentences with a connecting word, and join related one-line paragraphs into one paragraph.
 - **Any rule or natural English:** Natural English wins (rule 6).
 
 ## How to work
 
 1. Write the draft, or read the source text.
 2. Revise it against the checklist below.
-3. For text of more than about 200 words, run the checker if you can run Python:
+3. Do a flow pass. Join one-sentence paragraphs to the paragraphs where they belong. Then read each pair of sentences in turn and ask how the second follows from the first. If the reader cannot tell, add a link or change the order. Fold small facts into the sentences that they belong to, and vary the openings.
+4. For text of more than about 200 words, run the checker if you can run Python:
 
    ```
    python3 <this skill's folder>/scripts/check.py <file>
    ```
 
-   You can also pipe text to it on stdin. It flags long sentences, runs of short sentences, long words, stock phrases, possible passives, semicolons and long paragraphs. Some of its flags are false, and it cannot find every problem, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
-4. Read the result aloud in your head, as the reader will. If it sounds like separate facts read one after another, link them. If it sounds robotic or rude, fix that too.
+   You can also pipe text to it on stdin. It flags long sentences, runs of short sentences, sentences that start with the same word, fragmented paragraphs, long words, stock phrases, possible passives and semicolons. Some of its flags are false, and it cannot find every problem, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
+5. Read the result aloud in your head, as the reader will. If it sounds like separate facts read one after another, link them. If it sounds robotic or rude, fix that too.
 
 ## Checklist
 
@@ -134,8 +162,9 @@ Full STE is too strict for most writing outside aircraft manuals, so we drop the
 - Is there a word that adds no meaning? Cut it, but keep grammar words and linking words.
 - Is there a passive? Make it active, unless the doer is unknown or unimportant.
 - Does each sentence give one main idea in 25 words or fewer?
+- Do most paragraphs have three to five linked sentences, or is the text a stack of one-line paragraphs?
 - Does each sentence follow from the one before it? Would a connecting word make the link clearer?
-- Are there three or more short sentences in a row? Join two of them.
+- Are there three or more short sentences in a row, or three sentences that start with the same word? Join or rewrite them.
 - Does each instruction start with a verb and give one action?
 - Is each thing called by the same name every time?
 - Is the most important point first?

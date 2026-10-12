@@ -12,14 +12,14 @@ The goal is a text that an expert can check quickly and that a reader from a nea
 ## How the user starts the skill
 
 - **`/write-academic <task>`**: Do the task, for example "an abstract from these notes" or "the limitations section of our report", and write all prose for it in this style.
-- **`/write-academic` with text or a file**: Rewrite the text in this style. Keep every claim, number, citation and term, and keep the structure unless the user asks you to change it. Give the rewrite first. After it, list only the changes that can affect what a reader or reviewer concludes, for example a claim that you weakened because the evidence did not support it. Keep this list short, and if there is nothing to list, add nothing.
+- **`/write-academic` with text or a file**: Rewrite the text in this style. Keep every claim, number, citation and term, and keep the structure unless the user asks you to change it. Keep the strength of each claim and request unless the evidence does not support it. Give the rewrite first. After it, list only the changes that can affect what a reader or reviewer concludes, for example a claim that you weakened because the evidence did not support it. Keep this list short, and if there is nothing to list, add nothing.
 - **`/write-academic` alone**: Use this style for all academic prose in the rest of the conversation, until the user tells you to stop.
 
 Do not announce the style. Give the text.
 
 ### Research integrity comes first
 
-Never invent a citation, an author, a number, a result, a quotation or a detail of a method. Where the text needs something that the user has not given, put a clear placeholder, for example `[CITE: early work on few-shot learning]`, `[N = ?]` or `[RESULT: accuracy on the test set]`, and list the placeholders after the text. Do not make a claim stronger than the evidence that the user gives. If a claim in the source is stronger than its evidence, soften it and say so after the text.
+Never invent a citation, an author, a number, a result, a quotation or a detail of a method. Where the text needs something that the user has not given, put a clear placeholder, for example `[CITE: early work on few-shot learning]`, `[N = ?]` or `[RESULT: accuracy on the test set]`, and list the placeholders after the text. Write the main text as if it were final, with each placeholder in the place of the missing fact inside a complete sentence. Never address the author inside the text, as in "we also need to state which test we used". Put such advice in the notes after the text. Do not make a claim stronger than the evidence that the user gives. If a claim in the source is stronger than its evidence, soften it and say so after the text.
 
 ### What the style does not touch
 
@@ -80,15 +80,40 @@ Give limitations their own section or paragraph. Make each one specific, say wha
 
 Cite each claim that is not your own result and not common knowledge in the field, and put the citation next to the claim that it supports. Use the citation style of the source or the venue. Never invent a reference, because a placeholder costs the author a minute and a false citation can cost them their credibility.
 
-## Sentences and flow
+## Make the text flow
 
-The flow rules of `write` apply here without change. Each sentence must lead into the next, so that the text reads as one line of argument and not as a list of results.
+A paper is an argument, so its sentences must read as one line of reasoning and not as a list of results. Each sentence should grow out of the one before it, and each paragraph should take the reader one clear step further. Flow matters as much as precision here, because a reviewer who must rebuild the logic alone will trust the work less.
 
-- **Start with what the reader knows, and end with what is new.** The new part at the end of one sentence becomes the known part at the start of the next.
-- **Show the logic.** Use "also", "but", "however", "therefore", "thus", "in contrast", "for example", "as a result" and "this suggests that" where the link is not clear from the order. Prefer "also" to "furthermore", "moreover" and "additionally". The model paper does not use "furthermore" or "moreover" at all.
+### Build each paragraph around one step of the argument
+
+State the step in the first sentence, give the evidence in the middle, and use the last sentence to say what the evidence means or to lead into the next paragraph. Most paragraphs need four to eight sentences. A paragraph of one or two sentences is usually a fragment of its neighbour, so join it to the paragraph where it belongs.
+
+Link each paragraph to the one before it when the step is not obvious, for example "This gain is largest for long reports, …" or "A second limitation concerns the data." When you list several points, such as limitations or contributions, you can number them in prose with "First, …", "Second, …", as Brown et al. do in their section on limitations. Keep arguments in paragraphs, and use a list only for parallel items that the reader will scan, such as contributions, research questions or settings.
+
+### Link each sentence to the one before it
+
+- **Start with what the reader already knows, and end with what is new.** The new part at the end of one sentence then becomes the known part at the start of the next.
+- **Show the logic.** Use "also", "but", "however", "therefore", "thus", "in contrast", "for example", "as a result" and "this suggests that" where the order does not make the link clear. Prefer "also" to "furthermore", "moreover" and "additionally". The model paper does not use "furthermore" or "moreover" at all.
 - **Point back with "this" and a noun**, for example "this gap" or "this result", not with "this" alone.
+- **Fold details into the sentence that they support.** A setting, a sample size or a comparison rarely needs its own sentence. Attach it with "which", "when" or "compared with", or put a statistic in brackets, as in "Accuracy rises to 71.2% (n = 1,000)."
+
+### Vary the rhythm
+
+Aim for an average of about 18 to 26 words in paragraphs, and mix short and long sentences. Split any sentence of more than about 35 words. Three or more short sentences in a row sound choppy, so join two of them. Three sentences in a row that start with the same word, such as "We… We… We…", sound mechanical, so start one of them with its setting or its contrast instead: "On TriviaQA, …" or "In contrast, …".
+
+### Example of flow
+
+Choppy:
+> We tested three model sizes. The smallest model reached 52.4% accuracy. The medium model reached 63.0%. The largest model reached 71.2%. Accuracy grew with model size.
+
+With flow:
+> Accuracy grows steadily with model size. Of the three sizes that we test, the smallest model reaches 52.4%, the medium model 63.0% and the largest 71.2%, which is the best result of the three.
+
+The second version has the same numbers, but it states the finding first and then gives the evidence in one linked sentence.
+
+### Sentences
+
 - **Keep one main idea in each sentence**, together with its condition, cause, comparison or result.
-- **Length:** aim for an average of about 18 to 26 words in paragraphs, and mix short and long sentences. Split any sentence of more than about 35 words. Three or more short sentences in a row usually sound choppy, so join two of them.
 - **Brackets** are useful for abbreviations, short asides, citations and statistics, for example "(n = 84)" or "(p < 0.01)". Do not put a key point in brackets. Use "e.g." and "i.e." only inside brackets.
 - **Semicolons** are acceptable but rare. Use at most one in a paragraph, and only to join two closely related clauses.
 - **No noun stacks** of four or more nouns, unless the stack is the standard name of a method.
@@ -98,10 +123,6 @@ The flow rules of `write` apply here without change. Each sentence must lead int
 - Use the present tense for what the paper shows and for general facts: "Table 2 shows…", "GPT-3 achieves…", "Few-shot learning requires…".
 - Use the past tense for what you did at a fixed time and for what earlier studies found: "We collected 3,000 responses in 2023", "Smith et al. (2019) found…". Methods sections can use either tense, but keep one tense within a section.
 - Use the future tense only for plans: "We will release the code".
-
-### Paragraphs
-
-Give one topic to each paragraph and state it in the first sentence. Most paragraphs need three to eight sentences. Use lists only for parallel items such as contributions, research questions or settings, and keep arguments in prose.
 
 ## Section by section
 
@@ -119,8 +140,8 @@ Give one topic to each paragraph and state it in the first sentence. Most paragr
 
 | | `write` | `write-academic` |
 |---|---|---|
-| Sentence length | Limit 25, average 13 to 18 | Limit about 35, average 18 to 26 |
-| Paragraph length | Up to 6 sentences | Usually 3 to 8 sentences |
+| Sentence length | Limit 25, average 15 to 20 | Limit about 35, average 18 to 26 |
+| Paragraph length | Usually 3 to 5 sentences, at most 6 | Usually 4 to 8 sentences |
 | Technical terms | Avoid unless necessary | Use the exact term, define it once |
 | "However", "therefore", "thus" | Prefer "but" and "so" | Acceptable |
 | "e.g.", "i.e." | Avoid | Only inside brackets |
@@ -133,14 +154,15 @@ Give one topic to each paragraph and state it in the first sentence. Most paragr
 
 1. Write the draft, or read the source text. Note every claim, number and citation that must survive.
 2. Revise it against the checklist below.
-3. For text of more than about 200 words, run the checker if you can run Python:
+3. Do a flow pass. Join paragraphs of one or two sentences to the paragraphs where they belong, and check that each paragraph states its step first. Then read each pair of sentences in turn and ask how the second follows from the first. If a reviewer could not tell, add a link or change the order.
+4. For text of more than about 200 words, run the checker if you can run Python:
 
    ```
    python3 <this skill's folder>/scripts/check.py --profile academic <file>
    ```
 
-   It reads Markdown and LaTeX and skips maths, citations and code. It flags long sentences, runs of short sentences, long paragraphs, extra semicolons, possible passives, and the words and phrases in the word list. Some of its flags are false, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
-4. Read the result as a reviewer will. Check that each claim has its evidence and that each number and citation from the source is still there.
+   It reads Markdown and LaTeX and skips maths, citations and code. It flags long sentences, runs of short sentences, sentences that start with the same word, fragmented and long paragraphs, extra semicolons, possible passives, and the words and phrases in the word list. Some of its flags are false, so treat its output as hints. Do not show the checker output to the user unless they ask for it.
+5. Read the result as a reviewer will. Check that each claim has its evidence and that each number and citation from the source is still there.
 
 ## Checklist
 
@@ -152,6 +174,7 @@ Give one topic to each paragraph and state it in the first sentence. Most paragr
 - Is each term defined once and then used in the same way?
 - Is the work of the authors in the active voice, with "we"?
 - Is there a figure of speech, a hype word or a long word with a short equivalent? Replace it.
+- Does each paragraph take one step of the argument, in four to eight linked sentences?
 - Does each sentence follow from the one before it?
 - Are the limitations specific and stated openly?
 

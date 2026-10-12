@@ -5,8 +5,9 @@ Usage:
     python3 check.py [--profile plain|academic] [FILE ...]
     cat draft.md | python3 check.py --profile academic
 
-The script flags long sentences, runs of short sentences, long paragraphs,
-semicolons, possible passives and the words and phrases in the word list
+The script flags long sentences, runs of short sentences, sentences that
+start with the same word, fragmented and long paragraphs, semicolons,
+possible passives and the words and phrases in the word list
 of the skill that holds this script (references/word-list.md). The
 "academic" profile allows longer sentences and paragraphs and reads LaTeX.
 The script skips code, maths, citations, URLs and headings.
@@ -27,10 +28,12 @@ PROFILES = {
         "paragraph_limit": 6,     # sentences
         "short_sentence": 10,     # words or fewer counts as a short sentence
         "choppy_run": 3,          # this many short sentences in a row sounds choppy
-        "average_min": 11,        # words, average for sentences in paragraphs
+        "average_min": 12,        # words, average for sentences in paragraphs
         "average_max": None,
-        "aim": "13 to 18",
+        "aim": "15 to 20",
         "semicolons_per_paragraph": 0,
+        "paragraph_mean_min": 2.5,  # sentences, average for paragraphs
+        "repeat_run": 3,          # this many sentences in a row with the same first word
     },
     "academic": {
         "sentence_limit": 35,
@@ -42,6 +45,8 @@ PROFILES = {
         "average_max": 27,
         "aim": "18 to 26",
         "semicolons_per_paragraph": 1,
+        "paragraph_mean_min": 3.0,
+        "repeat_run": 3,
     },
 }
 
@@ -216,6 +221,25 @@ def choppy_runs(sentences, profile):
         run = []
 
 
+def repeated_openings(sentences, profile):
+    """Yield each run of sentences in a row that start with the same word."""
+    run, last = [], None
+    for sentence in sentences + [""]:
+        words = WORD.findall(sentence)
+        first = words[0].lower() if words else None
+        if first and first == last:
+            run.append(sentence)
+            continue
+        if len(run) >= profile["repeat_run"]:
+            yield run
+        run, last = ([sentence], first) if first else ([], None)
+
+
+def ends_like_prose(block):
+    """True for a paragraph that ends a sentence, not for a greeting or sign-off."""
+    return bool(re.search(r"[.!?][\"')\]]*\s*$", block.strip()))
+
+
 def strip_front_matter(text):
     """Blank out YAML front matter, but keep the line numbers."""
     match = re.match(r"---\n.*?\n---\n", text, re.DOTALL)
@@ -228,7 +252,7 @@ def check(text, word_list, profile=PROFILES["plain"]):
     text = strip_front_matter(text)
     findings = []
     stats = {"sentences": 0, "words": 0, "longest": 0, "passives": 0,
-             "prose_sentences": 0, "prose_words": 0}
+             "prose_sentences": 0, "prose_words": 0, "paragraphs": []}
     for line, block, kind in blocks(text.splitlines()):
         sentences = split_sentences(block)
         if kind != "step" and len(sentences) > profile["paragraph_limit"]:
@@ -238,6 +262,12 @@ def check(text, word_list, profile=PROFILES["plain"]):
             for run in choppy_runs(sentences, profile):
                 findings.append((line, "choppy",
                                  f"{len(run)} short sentences in a row: {preview(' '.join(run))}"))
+            for run in repeated_openings(sentences, profile):
+                findings.append((line, "repeated openings",
+                                 f"{len(run)} sentences in a row start with "
+                                 f"\"{WORD.findall(run[0])[0]}\": {preview(' '.join(run))}"))
+        if kind == "paragraph" and ends_like_prose(block) and len(WORD.findall(block)) >= 5:
+            stats["paragraphs"].append(len(sentences))
         if block.count(";") > profile["semicolons_per_paragraph"]:
             findings.append((line, "semicolon",
                              f"{block.count(';')} in this paragraph, limit "
@@ -276,6 +306,17 @@ def check(text, word_list, profile=PROFILES["plain"]):
             findings.append((None, "dense overall",
                              f"paragraph sentences average {average:.1f} words, "
                              f"aim for {profile['aim']} and split the longest ones"))
+    counts = stats["paragraphs"]
+    if len(counts) >= 3 and counts[-1] == 1:
+        counts = counts[:-1]  # a one-line closing, such as a thank-you, is fine
+    if len(counts) >= 3:
+        single = sum(n == 1 for n in counts)
+        mean = sum(counts) / len(counts)
+        if single * 3 > len(counts) or mean < profile["paragraph_mean_min"]:
+            findings.append((None, "fragmented paragraphs",
+                             f"{single} of {len(counts)} paragraphs have one sentence, "
+                             f"average {mean:.1f} sentences per paragraph; "
+                             f"join related sentences into paragraphs"))
     return findings, stats
 
 
@@ -292,8 +333,10 @@ def report(name, text, word_list, profile):
     if stats["sentences"]:
         average = stats["words"] / stats["sentences"]
         prose = stats["prose_words"] / max(stats["prose_sentences"], 1)
+        counts = stats["paragraphs"]
+        per_paragraph = sum(counts) / len(counts) if counts else 0
         print(f"-- {stats['sentences']} sentences, average {average:.1f} words "
-              f"({prose:.1f} in paragraphs), "
+              f"({prose:.1f} in paragraphs), {per_paragraph:.1f} sentences per paragraph, "
               f"longest {stats['longest']}, possible passives {stats['passives']}, "
               f"{len(findings)} flags")
     else:
